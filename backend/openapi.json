@@ -1,3 +1,67 @@
 {
-    
+    "openapi": "3.0.2",
+    "info": {
+        "contact": {
+            "email": "eldon.ew.com@gmail.com",
+            "name": "Eldon Williams",
+            "url": "https://eldon.zone/"
+        },
+        "title": "Api-Test",
+        "version": "v1",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "description": "Api-Test is a basic API (with websocket) to test properly connected a frontend and backend"
+    },
+    "paths": {
+        "/up": {
+            "description": "The up path is a good way to check if the server is working/that you can access it. Additionally, it provides additional information in the response about the deployment",
+            "get": {
+                "description": "While get is the preferred method, the up path will function on any method",
+                "responses": {
+                    "200": {
+                        "description": "This is the only response in the handler, anything else means there was a error before it hit the handler code. If you get a 404 or some other error response there's most likely something bad happening.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "internal_port": {
+                                            "type": "integer",
+                                            "description": "The port that the server is running on internally, this may not be the way you contacted the server"
+                                        },
+                                        "request_content": {
+                                            "type": "object",
+                                            "properties": {
+                                                "path": {
+                                                    "type": "string",
+                                                    "description": "The path you contacted the server at (sub the /up part cause express weird)"
+                                                },
+                                                "headers": {
+                                                    "type": "array",
+                                                    "description": "The request.headers object"
+                                                },
+                                                "body": {
+                                                    "type": "object",
+                                                    "description": "The request.body object, as parsed internally"
+                                                }
+                                            }
+                                        },
+                                        "lucky_number": {
+                                            "type": "number",
+                                            "description": "A random number!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Something SERIOUSLY weird is going on"
+                    }
+                }
+            }
+        }
+    }
 }
