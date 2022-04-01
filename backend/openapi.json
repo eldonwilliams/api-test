@@ -14,10 +14,19 @@
         },
         "description": "Api-Test is a basic API (with websocket) to test properly connected a frontend and backend"
     },
+    "tags": [
+        {
+            "name": "Server Health",
+            "description": "Any method relating to gauging server health and status"
+        }
+    ],
     "paths": {
         "/up": {
             "description": "The up path is a good way to check if the server is working/that you can access it. Additionally, it provides additional information in the response about the deployment",
+            "summary": "How's the server doing?",
             "get": {
+                "tags": ["Server Health"],
+                "summary": "How's the server doing?",
                 "description": "While get is the preferred method, the up path will function on any method",
                 "responses": {
                     "200": {
